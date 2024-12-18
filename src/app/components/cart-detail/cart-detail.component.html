@@ -1,0 +1,95 @@
+<div class="app-cart-detail-header">
+  <svg
+    width="8"
+    height="16"
+    viewBox="0 0 8 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="app-cart-detail__back"
+    (click)="goBack()"
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M7.78033 2.03033C8.07322 1.73744 8.07322 1.26256 7.78033 0.96967C7.48744 0.676777 7.01256 0.676777 6.71967 0.96967L0.21967 7.46967C-0.0732232 7.76256 -0.0732232 8.23744 0.21967 8.53033L6.71967 15.0303C7.01256 15.3232 7.48744 15.3232 7.78033 15.0303C8.07322 14.7374 8.07322 14.2626 7.78033 13.9697L1.81066 8L7.78033 2.03033ZM0.75 8L1.28033 8.53033L1.81066 8L1.28033 7.46967L0.75 8Z"
+      fill="#242424"
+    />
+  </svg>
+
+  <div class="app-header">
+    <p class="text fw-bold fs-2">My Cart</p>
+  </div>
+
+  <span> </span>
+</div>
+<div
+  class="app-cart-detail"
+  *ngIf="selectedProducts.length > 0 || isSuccess; else emptyState"
+>
+  <ng-container *ngIf="!isSuccess; else successState">
+    <div
+      class="app-cart-detail-tile"
+      *ngFor="
+        let product of selectedProducts;
+        trackBy: trackById;
+        let isLast = last
+      "
+      [ngClass]="{ 'app-cart-detail-divider': !isLast }"
+    >
+      <div class="app-cart-detail-product">
+        <div class="app-cart-detail-product__image-container">
+          <img
+            class="app-cart-detail-product__image"
+            src="{{ product.mainImage }}"
+          />
+        </div>
+        <div class="app-cart-detail-product__container">
+          <div>
+            <p class="app-cart-detail-product__name">{{ product.name }}</p>
+            <p class="app-cart-detail-product__price fw-bold">
+              {{ product.price | currency }}
+            </p>
+          </div>
+          <app-counter
+            [count]="product.count || 0"
+            (addCount)="updateCount($event, product)"
+            (reduceCount)="updateCount($event, product)"
+          ></app-counter>
+        </div>
+      </div>
+      <div class="app-cart-detail-product__remove">
+        <svg
+          width="36"
+          height="36"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          (click)="removeProduct(product)"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM9.7436 8.91213L12.2766 6.37915C12.577 6.07875 13.064 6.07875 13.3644 6.37915C13.6648 6.67955 13.6648 7.16661 13.3644 7.46701L10.8315 9.99999L13.3645 12.533C13.6649 12.8334 13.6649 13.3204 13.3645 13.6208C13.0641 13.9213 12.577 13.9213 12.2766 13.6208L9.7436 11.0878L7.21059 13.6208C6.91019 13.9213 6.42314 13.9213 6.12274 13.6208C5.82233 13.3204 5.82233 12.8334 6.12274 12.533L8.65575 9.99999L6.12276 7.46701C5.82236 7.16661 5.82236 6.67955 6.12276 6.37915C6.42317 6.07875 6.91022 6.07875 7.21062 6.37915L9.7436 8.91213ZM1.53846 10C1.53846 14.6732 5.32682 18.4616 10 18.4616C14.6732 18.4616 18.4616 14.6732 18.4616 10C18.4616 5.32682 14.6732 1.53846 10 1.53846C5.32682 1.53846 1.53846 5.32682 1.53846 10Z"
+            fill="#242424"
+          />
+        </svg>
+      </div>
+    </div>
+
+    <div class="app-cart-detail__total">
+      <p class="fw-bold">Total:</p>
+      <p class="fw-bold">{{ total | currency }}</p>
+    </div>
+    <button
+      class="app-cart-detail__check-out btn btn-primary"
+      (click)="checkout()"
+    >
+      Check out
+    </button>
+  </ng-container>
+</div>
+
+<ng-template #emptyState
+  ><p class="text-center">No product in you cart.</p></ng-template
+>
+<ng-template #successState><p class="text-center">Thank you.</p></ng-template>

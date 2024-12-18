@@ -1,0 +1,55 @@
+<div class="app-product-detail">
+  <div class="app-product-detail-image-container">
+    <img
+      class="app-product-detail-image"
+      src="{{ selectedProduct.mainImage }}"
+    />
+  </div>
+
+  <div>
+    <p class="app-product-detail-name">{{ selectedProduct.name }}</p>
+    <div class="app-product-detail-price-container">
+      <p class="app-product-detail-price fw-bold">
+        {{ selectedProduct.price | currency }}
+      </p>
+      <app-counter
+        [count]="counter"
+        (addCount)="addCount($event)"
+        (reduceCount)="reduceCount($event)"
+      ></app-counter>
+    </div>
+    <div class="app-product-detail-rating">
+      <span>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M19.9824 7.72477C19.9401 7.59518 19.8281 7.50067 19.6931 7.48098L13.217 6.53981L10.3209 0.671592C10.2607 0.549159 10.1361 0.471832 10.0001 0.471832C9.86406 0.471832 9.73912 0.549159 9.67934 0.671592L6.78282 6.54017L0.306722 7.48134C0.171758 7.50102 0.0600646 7.59518 0.0174634 7.72513C-0.0244218 7.85436 0.0103036 7.99685 0.108036 8.09171L4.79452 12.6597L3.68797 19.11C3.66505 19.2442 3.72019 19.3799 3.83009 19.4601C3.94071 19.541 4.08713 19.5514 4.20706 19.4873L10.0001 16.4422L15.7924 19.4873C15.8447 19.5149 15.9023 19.5285 15.9593 19.5285C16.0334 19.5285 16.1071 19.5056 16.1698 19.4601C16.28 19.3799 16.3351 19.2442 16.3119 19.11L15.2057 12.66L19.8922 8.09171C19.9895 7.99613 20.0246 7.85401 19.9824 7.72477Z"
+            fill="#F2C94C"
+          />
+        </svg>
+      </span>
+      <span class="fw-bold ps-2 pt-1 fs-4">{{ selectedProduct.rating }}</span>
+      <span class="ps-4 pt-1 fs-5 app-product-detail-review"
+        >({{ selectedProduct.reviewCount }} reviews)</span
+      >
+    </div>
+    <div class="pt-3 pb-5 fs-5 app-product-detail-description">
+      {{ selectedProduct.description }}
+    </div>
+  </div>
+
+  <div class="app-product-detail-buttons">
+    <button
+      class="btn btn-primary app-product-detail-buttons__add"
+      (click)="addToCart()"
+      [disabled]="counter === 0"
+    >
+      Add to cart
+    </button>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<app-logo></app-logo>
+<div class="app-header">
+  <h3>Hello!</h3>
+  <h3>WELCOME BACK</h3>
+</div>
+<div class="app-tile" [formGroup]="formGroup">
+  <p *ngIf="isLoginButtonDisabled" class="text-danger">
+    You reached the allowed attempts. Please wait after 1 minute to try again.
+  </p>
+  <input
+    type="email"
+    formControlName="email"
+    placeholder="Email"
+    class="form-control mb-5"
+  />
+  <input
+    type="password"
+    formControlName="password"
+    placeholder="Password"
+    class="form-control mb-5"
+  />
+  <button class="btn btn-secondary" (click)="forgotPassword()">
+    Forgot password
+  </button>
+  <button
+    class="btn btn-primary"
+    (click)="login()"
+    [disabled]="isLoginButtonDisabled"
+  >
+    Log in
+  </button>
+  <button class="btn btn-secondary" (click)="signUp()">Sign up</button>
+</div>

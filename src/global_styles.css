@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --bs-primary-rgb: #242424;
+}
+
+body {
+  position: relative;
+  background: #ffffff;
+  color: #242424;
+  margin: 0;
+}
+.app-container {
+  padding: 60px;
+  margin: 0 auto;
+}
+
+h3 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 4rem;
+  line-height: 120%;
+  text-align: center;
+  margin: 0;
+}
+
+p {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.app-header {
+  padding-bottom: 32px;
+}
+
+.app-header p {
+  line-height: 1;
+}
+
+.app-tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 40px;
+  background: #ffffff;
+  box-shadow: 0px 8px 40px rgba(138, 149, 158, 0.2);
+}
+
+/** Bootstrap Overwrite */
+.form-control {
+  height: 150px;
+  font-size: 2rem;
+}
+
+.btn {
+  height: 120px;
+  border-radius: 16px;
+  font-size: 2rem;
+}
+.btn:disabled {
+  background-color: grey !important;
+  cursor: not-allowed;
+}
+
+.btn-primary,
+.btn-primary:hover {
+  background-color: #242424;
+  border: none;
+}
+
+.btn-secondary,
+.btn-secondary:hover {
+  background-color: transparent;
+  border: none;
+  color: #303030;
+}
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #bdbdbd !important;
+}
+
+.link-primary {
+  text-decoration: none;
+  font-weight: 600;
+}

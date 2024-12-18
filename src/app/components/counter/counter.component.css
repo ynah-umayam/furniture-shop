@@ -1,0 +1,19 @@
+.app-counter-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.app-counter-add-icon,
+.app-counter-minus-icon {
+  background-color: #f5f5f5;
+  padding: 10px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.app-counter-count {
+  width: 48px;
+  text-align: center;
+}
